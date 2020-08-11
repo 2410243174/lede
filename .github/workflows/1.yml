@@ -69,6 +69,11 @@ jobs:
         name: OpenWrt_firmware
         path: lede/feeds
    
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt_firmware
+        path: lede/package  
     - name: Upload firmware to cowtransfer
       run: |
         curl -fsSL git.io/file-transfer | sh
