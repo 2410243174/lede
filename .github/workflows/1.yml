@@ -67,14 +67,14 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: lede_feeds${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: lede_feeds
         path: lede/feeds
    
-   - name: Upload bin director
+    - name: Upload bin director
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: lede_package${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}2
+        name: lede_package
         path: lede/package
 
     - name: Organize files
