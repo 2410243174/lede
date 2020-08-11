@@ -74,7 +74,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: package
-        path: lede/feeds/package
+        path: lede/feeds
    
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
@@ -86,7 +86,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: feeds
-        path: lede/feeds
+        path: lede/package
     
     - name: Upload firmware to cowtransfer
       run: |
