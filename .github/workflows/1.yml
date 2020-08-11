@@ -58,22 +58,36 @@ jobs:
 
     - name: Install feeds
       run: cd lede && ./scripts/feeds install -a
+           
 
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
-       
+    
+    - name: Download package
+      id: package
+      run: |
+        cd lede
+        make download -j8
+    
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_firmware
-        path: lede/feeds
+        name: package
+        path: lede/package
    
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_firmware
-        path: lede/package  
+        name: dl
+        path: lede/dl
+      
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@master
+      with:
+        name: feeds
+        path: lede/feeds
+    
     - name: Upload firmware to cowtransfer
       run: |
         curl -fsSL git.io/file-transfer | sh
